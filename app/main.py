@@ -8,16 +8,11 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    person_list: list[Person] = []
+    person_list = [
+        Person(person_data["name"], person_data["age"])
+        for person_data in people
+    ]
 
-    # First pass: create people
-    for person_data in people:
-        name = person_data["name"]
-        age = person_data["age"]
-        person = Person(name, age)
-        person_list.append(person)
-
-    # Second pass: link spouses
     for person_data in people:
         current_person = Person.people[person_data["name"]]
 
